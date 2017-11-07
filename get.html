@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="node_modules/_animate.css@3.5.2@animate.css/animate.css">
+    <script src="js/vue.min.js"></script>
+    <script src="js/vue-router.min.js"></script>
+    <script src="js/vue-resource.js"></script>
+    <script src="js/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+    <div id="app">
+        <ul class="nav">
+            <li><router-link to="/login">登录</router-link></li>
+            <li><router-link to="/sign">注册</router-link></li>
+        </ul>
+        <transition :enter-active-class="enterclass" :leave-active-class="leaveclass">
+            <router-view></router-view>
+        </transition>
+    </div>
+    <template id="login">
+        <div class="animated box">
+            <div><input type="text" placeholder="请输入你的名称" v-model="name"></div>
+            <div><input type="password" placeholder="请输入你的密码" v-model="pass"></div>
+            <div><input type="button" value="登录" @click="org()"></div>
+        </div>
+    </template>
+    <template id="sign">
+        <div class="sigin animated box">
+            <div><input type="text" placeholder="请输入你的名称" v-model="name"></div>
+            <div><input type="password" placeholder="请输入你的密码" v-model="pass"></div>
+            <div><input type="password" placeholder="确认密码" v-model="ispass"></div>
+            <div><input type="text" placeholder="请输入你的手机号" v-model="phone"></div>
+            <div>
+                <input type="text" placeholder="验证码" v-model="isyz">
+                <button v-show="show" @click="sj()">获取验证码</button>
+                <button v-show="!show" class="count">{{count}} s</button>
+            </div>
+            <div><input type="button" @click="zc()" value="注册"></div>
+        </div>
+    </template>
+    <script src="js/index.js"> </script>
+</body>
+</html>

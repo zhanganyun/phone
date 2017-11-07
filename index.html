@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/vue.min.js"></script>
+    <script src="js/vue-resource.js"></script>
+    <script src="js/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <input type="text" placeholder="请输入你的手机号" v-model="phone">
+    <input type="text" placeholder="验证码">
+    <input type="button" @click="yz()" value="发送" :disabled="disa">
+</div>
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            phone:'',
+            arr:[1,2,3,4,5,6,7,8,9],
+            sjs:"",
+            disa:false
+        },
+        methods:{
+            yz(){
+                $.ajax({
+                    type:'GET',
+                    url:'/getPhone',
+                    data:{
+                      phone:this.phone
+                    },
+                    success:function (res) {
+                        if (res.Message==OK){
+                            alert(发送成功)
+                        }
+                    }
+                })
+               this.ds();
+            }
+        }
+    })
+
+</script>
+</body>
+</html>
