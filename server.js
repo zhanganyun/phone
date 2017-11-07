@@ -3,6 +3,7 @@
  * Created on 2017-07-31
  */
 const express=require('express');
+//引入阿里云模块
 const SMSClient = require('@alicloud/sms-sdk');
 const mysql=require("mysql");
 let server=express();
@@ -17,8 +18,8 @@ const db=mysql.createConnection({
 /*ACCESS_KEY_ID/ACCESS_KEY_SECRET 根据实际申请的账号信息进行替换
 *设置阿里云秘钥
 * */
-const accessKeyId = 'LTAIAaieSHyQSDqB';
-const secretAccessKey = 'DAAHRMbn2JzC09ElpMH222ZHkVy1rT';
+const accessKeyId = 'id';
+const secretAccessKey = 'pass';
 //初始化阿里云sms_client模块
 let smsClient = new SMSClient({accessKeyId, secretAccessKey});
 //注册模块
@@ -95,9 +96,9 @@ server.get('/getPhone',(req,res) =>{
     // 设置手机号
         PhoneNumbers:phone,
     // 设置模板
-        SignName: '1701I班',
+        SignName: 'sign',
     // 设置签名
-        TemplateCode: 'SMS_102175056',
+        TemplateCode: 'code',
     // 设置发送信息
         TemplateParam: '{"code":'+code+',"product":"云通信"}'
     }).then(function (data) {
